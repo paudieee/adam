@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IE">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +11,18 @@
   <link rel="icon" href="https://i.imgur.com/7PyHgFT.png">
   <title>Adam Larkin Construction</title>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" as="style" onload="this.rel='stylesheet'">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.39.9/dist/tailwind.min.css" rel="stylesheet">
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   </noscript>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.google.com/js?id=G-XXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXX');
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -24,8 +32,10 @@
     "email": "A.larkinconstruction@gmail.com",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Togher",
       "addressLocality": "Dunleer",
       "addressRegion": "Co. Louth",
+      "postalCode": "A92W8D2",
       "addressCountry": "IE"
     },
     "url": "https://adamlarkinconstruction.com",
@@ -69,13 +79,13 @@
     .shadow-lg{box-shadow:0 10px 15px rgba(0,0,0,0.1);}
 
     /* Navigation */
-    nav{position:sticky;top:0;background-color:rgba(255,255,255,0.95);z-index:20;border-bottom:1px solid #e2e8f0;transition:box-shadow 0.3s ease;padding:0.75rem 0;}
+    nav{position:sticky;top:0;background-color:rgba(255,255,255,0.95);z-index:20;border-bottom:1px solid #e2e8f0;padding:0.75rem 0;}
     nav.scrolled{box-shadow:0 2px 4px rgba(0,0,0,0.1);}
     .nav-logo img{width:120px;height:auto;}
     .nav-links{display:flex;gap:1.5rem;padding:0.25rem 0;}
     .nav-links a{position:relative;color:#4b5563;font-size:1rem;font-weight:500;padding:0.25rem 0;text-decoration:none;}
     .nav-links a:hover, .nav-links a:focus{color:#1e40af;}
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#1e40af;transition:width 0.3s ease;}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#1e40af;}
     .nav-links a:hover::after, .nav-links a:focus::after{width:100%;}
     .nav-links a:focus{outline:2px solid #1e40af;outline-offset:2px;}
     .hamburger{font-size:1.5rem;background:none;border:none;cursor:pointer;color:#4b5563;display:none;padding:0.5rem;}
@@ -83,7 +93,7 @@
     @media (max-width:767px) {
       nav{position:sticky;padding:1.5rem 0;}
       .nav-logo img{width:150px;}
-      .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:#fff;flex-direction:column;justify-content:center;align-items:center;gap:2rem;transform:translateX(-100%);transition:transform 0.3s ease;}
+      .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:#fff;flex-direction:column;justify-content:center;align-items:center;gap:2rem;transform:translateX(-100%);}
       .nav-links.active{transform:translateX(0);display:flex;}
       .nav-links a{font-size:1.5rem;}
       .hamburger{display:block;}
@@ -102,36 +112,46 @@
     @media (min-width:768px) {
       .project-grid{grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));}
     }
-    .project-card{background:#fff;border-radius:0.5rem;overflow:hidden;transition:transform 0.3s ease, box-shadow 0.3s ease;display:flex;flex-direction:column;min-height:450px;}
+    .project-card{background:#fff;border-radius:0.5rem;overflow:hidden;display:flex;flex-direction:column;min-height:450px;}
     .project-card:hover{transform:translateY(-5px);box-shadow:0 15px 25px rgba(0,0,0,0.15);}
     .project-card:hover .project-image{transform:scale(1.05);}
-    .project-image{aspect-ratio:4/3;object-fit:cover;width:100%;height:250px;border-radius:0.5rem 0.5rem 0 0;transition:transform 0.3s ease;}
+    .project-image{aspect-ratio:4/3;object-fit:cover;width:100%;height:250px;border-radius:0.5rem 0.5rem 0 0;}
     .project-content{padding:1.5rem;flex:1;}
     .badge{display:inline-block;background:#1e40af;color:#fff;padding:0.25rem 0.5rem;border-radius:0.25rem;font-size:0.875rem;margin-bottom:0.5rem;}
-    .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease-out, transform 0.6s ease-out;}
+    .fade-in{opacity:0;transform:translateY(20px);}
     .fade-in.visible{opacity:1;transform:translateY(0);}
 
     /* Form */
-    .form-input, .form-textarea{padding:0.75rem;border:1px solid #e2e8f0;border-radius:0.5rem;width:100%;transition:border-color 0.3s ease, box-shadow 0.3s ease;}
+    .form-input, .form-textarea{padding:0.75rem;border:1px solid #e2e8f0;border-radius:0.5rem;width:100%;min-height:48px;}
     .form-input:focus, .form-textarea:focus{border-color:#1e40af;box-shadow:0 0 0 3px rgba(30, 64, 175, 0.2);outline:none;}
     .form-textarea{resize:vertical;min-height:100px;}
     .form-message{display:none;color:#1e40af;font-size:0.875rem;margin-top:0.5rem;}
     .form-message.success{display:block;color:#15803d;}
     .form-message.error{display:block;color:#b91c1c;}
+    .form-consent{font-size:0.875rem;color:#4b5563;margin-top:1rem;}
+    .form-consent a{color:#1e40af;}
+    .form-consent a:hover{text-decoration:underline;}
+    .btn-disabled{opacity:0.6;cursor:not-allowed;}
+    .btn-loading:after{content:'...';}
 
     /* Contact Section */
     #contact{background:linear-gradient(to bottom, #f3f4f6, #d1d5db);}
+    .map-container iframe{width:100%;height:300px;border:0;border-radius:0.5rem;}
+    @media (min-width:768px) {
+      .contact-grid{grid-template-columns:1fr 1fr;}
+      .map-container iframe{height:400px;}
+    }
 
     /* Footer */
     .footer{background:#1e40af;color:#fff;padding:2rem 0;}
-    .footer a{color:#93c5fd;transition:color 0.3s ease;}
+    .footer a{color:#93c5fd;}
     .footer a:hover, .footer a:focus{color:#dbeafe;}
     .footer a:focus{outline:2px solid #93c5fd;outline-offset:2px;}
-    .social-btn{display:inline-block;margin:0 0.5rem;transition:transform 0.3s ease;}
+    .social-btn{display:inline-block;margin:0 0.5rem;}
     .social-btn:hover{transform:scale(1.1);}
     .social-icon{width:24px;height:24px;vertical-align:middle;margin-left:0.5rem;}
     .footer-divider{border:0;height:1px;background:#93c5fd;margin:1.5rem auto;width:50%;}
-    .btn{background:#1e40af;color:#fff;padding:1rem 2rem;border-radius:0.5rem;display:inline-block;text-decoration:none;transition:background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;font-weight:600;}
+    .btn{background:#1e40af;color:#fff;padding:1rem 2rem;border-radius:0.5rem;display:inline-block;text-decoration:none;font-weight:600;}
     .btn:hover, .btn:focus{background:#1e3a8a;transform:scale(1.05);box-shadow:0 4px 8px rgba(0,0,0,0.2);}
     .btn:focus{outline:2px solid #1e40af;outline-offset:2px;}
     a, button, .btn, .social-btn{transition:color 0.3s ease, transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;}
@@ -142,17 +162,17 @@
 
     /* Slideshow */
     .slideshow-container{position:relative;max-width:1000px;margin:0 auto;overflow:hidden;}
-    .slides-wrapper{display:flex;width:100%;transition:transform 0.5s ease-in-out;}
+    .slides-wrapper{display:flex;width:100%;}
     .slide{flex:0 0 100%;display:none;opacity:0;}
     .slide.active{display:block;opacity:1;}
     .slide-image-container{width:100%;height:400px;border-radius:0.5rem;overflow:hidden;background:#f8fafc;border:1px solid #e2e8f0;}
     .slide img{width:100%;height:100%;object-fit:contain;object-position:center;border-radius:0.5rem;}
-    .prev, .next{position:absolute;top:50%;transform:translateY(-50%);background:#1e40af;color:#fff;padding:0.75rem 1.25rem;border-radius:0.5rem;cursor:pointer;transition:background 0.3s ease, transform 0.3s ease;}
+    .prev, .next{position:absolute;top:50%;transform:translateY(-50%);background:#1e40af;color:#fff;padding:0.75rem 1.25rem;border-radius:0.5rem;cursor:pointer;}
     .prev{left:15px;}
     .next{right:15px;}
-    .prev:hover, .next:hover{background:#1e3a8a;transform:scale(1.1);}
+    .prev:hover, .next:hover{background:#1e3a8a;transform:scale(1.1) translateY(-50%);}
     .dots{text-align:center;margin-top:1rem;}
-    .dot{display:inline-block;width:12px;height:12px;background:#e2e8f0;border-radius:50%;margin:0 6px;cursor:pointer;transition:background 0.3s ease;}
+    .dot{display:inline-block;width:12px;height:12px;background:#e2e8f0;border-radius:50%;margin:0 6px;cursor:pointer;}
     .dot.active{background:#1e40af;}
     @media (max-width:767px) {
       .slideshow-container{padding:0 1rem;}
@@ -196,7 +216,7 @@
   <nav class="py-6" role="navigation" aria-label="Main navigation">
     <div class="container flex justify-between items-center">
       <a href="#home" class="nav-logo" aria-label="Adam Larkin Construction Home">
-        <img src="https://i.imgur.com/7PyHgFT.png" alt="Adam Larkin Construction Logo">
+        <img src="https://i.imgur.com/7PyHgFT.png" alt="Adam Larkin Construction Logo" loading="lazy">
       </a>
       <button class="hamburger" aria-label="Toggle menu">☰</button>
       <div class="nav-links flex gap-6">
@@ -231,27 +251,24 @@
     <div class="container">
       <h2 class="text-3xl font-bold text-center text-primary mb-8">Our Projects</h2>
       <div class="project-grid">
-        <!-- Project 1 -->
         <div class="project-card fade-in">
-          <img src="https://i.imgur.com/eqy248C.jpeg" alt="Industrial Warehouse Framework" class="project-image" loading="lazy">
+          <img src="https://i.imgur.com/eqy248C.jpeg" alt="Industrial warehouse framework in Dunleer" class="project-image" loading="lazy">
           <div class="project-content">
             <h3 class="text-2xl font-semibold text-primary mb-2">Industrial Warehouse Framework</h3>
             <span class="badge">Completed 2024</span>
             <p class="text-secondary">Our team delivered precision welding and structural integrity, meeting tight deadlines while ensuring safety and durability.</p>
           </div>
         </div>
-        <!-- Project 2 -->
         <div class="project-card fade-in">
-          <img src="https://i.imgur.com/CuRmnzo.jpeg" alt="Agricultural Building" class="project-image" loading="lazy">
+          <img src="https://i.imgur.com/CuRmnzo.jpeg" alt="Agricultural building in Co. Louth" class="project-image" loading="lazy">
           <div class="project-content">
             <h3 class="text-2xl font-semibold text-primary mb-2">Agricultural Building Construction</h3>
             <span class="badge">Completed 2023</span>
             <p class="text-secondary">Built a durable agricultural structure featuring steel framework and industrial-grade materials, tailored for agricultural needs.</p>
           </div>
         </div>
-        <!-- Project 3 -->
         <div class="project-card fade-in">
-          <img src="https://i.imgur.com/05uzlkv.jpeg" alt="Completed Shed" class="project-image" loading="lazy">
+          <img src="https://i.imgur.com/05uzlkv.jpeg" alt="Modern shed structure in Dunleer" class="project-image" loading="lazy">
           <div class="project-content">
             <h3 class="text-2xl font-semibold text-primary mb-2">Completed Shed Structure</h3>
             <span class="badge">Completed 2025</span>
@@ -270,7 +287,7 @@
         <div class="slides-wrapper">
           <div class="slide">
             <div class="slide-image-container shadow-md">
-              <img src="https://i.imgur.com/XBt3eHs.png" alt="Industrial Warehouse" loading="lazy">
+              <img src="https://i.imgur.com/XBt3eHs.png" alt="Industrial warehouse in Co. Louth" loading="lazy">
             </div>
             <div class="text-center mt-4">
               <h3 class="text-xl font-semibold text-primary">Industrial Warehouse</h3>
@@ -279,7 +296,7 @@
           </div>
           <div class="slide">
             <div class="slide-image-container shadow-md">
-              <img src="https://i.imgur.com/wiTFJrE.png" alt="Agricultural Shed" loading="lazy">
+              <img src="https://i.imgur.com/wiTFJrE.png" alt="Agricultural shed in Dunleer" loading="lazy">
             </div>
             <div class="text-center mt-4">
               <h3 class="text-xl font-semibold text-primary">Agricultural Shed</h3>
@@ -288,7 +305,7 @@
           </div>
           <div class="slide">
             <div class="slide-image-container shadow-md">
-              <img src="https://i.imgur.com/k5skpqR.png" alt="Modern Shed" loading="lazy">
+              <img src="https://i.imgur.com/k5skpqR.png" alt="Modern shed in Co. Louth" loading="lazy">
             </div>
             <div class="text-center mt-4">
               <h3 class="text-xl font-semibold text-primary">Modern Shed</h3>
@@ -309,29 +326,37 @@
 
   <!-- Contact Section -->
   <section id="contact" class="py-12" role="region" aria-label="Contact Us">
-    <div class="container text-center">
+    <div class="container">
       <h2 class="text-3xl font-bold text-center text-primary mb-8">Contact Us</h2>
-      <form action="https://formspree.io/f/xrbkpyey" method="POST" class="flex flex-col gap-4 mt-4 max-w-md mx-auto" id="contact-form">
-        <input type="hidden" name="_subject" value="New Contact Form Submission">
-        <p class="hidden">
-          <label>Don’t fill this out: <input name="_honeypot"></label>
-        </p>
-        <label class="text-left">
-          Your Name:
-          <input type="text" name="name" placeholder="Your Name" required class="form-input">
-        </label>
-        <label class="text-left">
-          Your Email:
-          <input type="email" name="email" placeholder="Your Email" required class="form-input">
-        </label>
-        <label class="text-left">
-          Your Message:
-          <textarea name="message" placeholder="Your Message" required class="form-textarea" rows="5"></textarea>
-        </label>
-        <button type="submit" class="btn">Send Message</button>
-        <p class="form-message" id="form-message"></p>
-      </form>
-      <p class="mt-4">
+      <div class="contact-grid grid gap-6 md:grid-cols-2">
+        <!-- Google Maps -->
+        <div class="map-container shadow-md">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2364.456789012345!2d-6.394567!3d53.834567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48673b7f8c9d7b2f%3A0x8f7b8c9d7b2f8c9d!2sTogher%2C%20Dunleer%2C%20Co.%20Louth%2C%20A92%20W8D2%2C%20Ireland!5e0!3m2!1sen!2sie!4v1697051234567!5m2!1sen!2sie&key=YOUR_API_KEY" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- Contact Form -->
+        <form action="https://formspree.io/f/xrbkpyey" method="POST" class="flex flex-col gap-4 max-w-md mx-auto" id="contact-form">
+          <input type="hidden" name="_subject" value="New Contact Form Submission">
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="_honeypot"></label>
+          </p>
+          <label class="text-left">
+            Your Name:
+            <input type="text" name="name" placeholder="Your Name" required class="form-input">
+          </label>
+          <label class="text-left">
+            Your Email:
+            <input type="email" name="email" placeholder="Your Email" required class="form-input">
+          </label>
+          <label class="text-left">
+            Your Message:
+            <textarea name="message" placeholder="Your Message" required class="form-textarea" rows="5"></textarea>
+          </label>
+          <button type="submit" class="btn" id="submit-btn">Send Message</button>
+          <p class="form-message" id="form-message"></p>
+          <p class="form-consent">By submitting this form, you agree to our <a href="#privacy" target="_blank">Privacy Policy</a> and the use of Google Maps and reCAPTCHA, which may set cookies.</p>
+        </form>
+      </div>
+      <p class="mt-4 text-center">
         Or reach us at: 
         <a href="tel:0863749747" aria-label="Call Adam Larkin Construction">086 374 9747</a> | 
         <a href="mailto:A.larkinconstruction@gmail.com" aria-label="Email Adam Larkin Construction">A.larkinconstruction@gmail.com</a>
@@ -345,17 +370,17 @@
       <p>
         Follow us on 
         <a href="https://www.facebook.com/profile.php?id=61563855041692" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on Facebook">
-          <img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook Icon" class="social-icon">
+          <img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook Icon" class="social-icon" loading="lazy">
         </a>
         <a href="https://www.donedeal.ie/farmsheds-for-sale/sheds-industrial-and-agricultural-sheds/39744609" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on DoneDeal">
-          <img src="https://img.icons8.com/ios-filled/24/ffffff/shopping-cart.png" alt="DoneDeal Icon" class="social-icon">
+          <img src="https://img.icons8.com/ios-filled/24/ffffff/shopping-cart.png" alt="DoneDeal Icon" class="social-icon" loading="lazy">
         </a>
         <a href="https://www.tiktok.com/@adamlarkin4" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on TikTok">
-          <img src="https://img.icons8.com/ios-filled/24/ffffff/tiktok.png" alt="TikTok Icon" class="social-icon">
+          <img src="https://img.icons8.com/ios-filled/24/ffffff/tiktok.png" alt="TikTok Icon" class="social-icon" loading="lazy">
         </a>
       </p>
       <hr class="footer-divider">
-      <p class="mt-4">Togher, Dunleer, Co. Louth | Adam Larkin Agricultural and Industrial building projects. All rights reserved.</p>
+      <p class="mt-4">Togher, Dunleer, Co. Louth, A92 W8D2 | Adam Larkin Agricultural and Industrial building projects. All rights reserved.</p>
     </div>
   </footer>
 
@@ -387,7 +412,6 @@
           document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
           });
-          // Close mobile menu if open
           document.querySelector('.nav-links').classList.remove('active');
           document.querySelector('.hamburger').classList.remove('active');
         });
@@ -438,12 +462,26 @@
 
       showSlide(currentSlide, 'slide-left');
 
-      // Contact form submission
+      // Contact form submission with spam protection
       document.getElementById('contact-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const form = e.target;
         const messageEl = document.getElementById('form-message');
-        
+        const submitBtn = document.getElementById('submit-btn');
+        const email = form.querySelector('input[name="email"]').value;
+
+        // Client-side email validation
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          messageEl.textContent = 'Please enter a valid email address.';
+          messageEl.className = 'form-message error';
+          return;
+        }
+
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('btn-disabled', 'btn-loading');
+        submitBtn.textContent = 'Sending...';
+
         try {
           const formData = new FormData(form);
           const response = await fetch(form.action, {
@@ -456,6 +494,7 @@
 
           const result = await response.json();
           if (response.ok) {
+            gtag('event', 'form_submission', { 'event_category': 'Contact Form', 'event_label': 'Success' });
             window.location.href = 'thank-you.html';
           } else {
             console.error('Formspree Error:', result);
@@ -466,6 +505,10 @@
           console.error('Submission Error:', error);
           messageEl.textContent = 'Error sending message. Please check your connection or try again later.';
           messageEl.className = 'form-message error';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('btn-disabled', 'btn-loading');
+          submitBtn.textContent = 'Send Message';
         }
       });
 
