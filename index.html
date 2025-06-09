@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en-IE">
 <head>
@@ -40,7 +41,7 @@
     },
     "url": "https://adamlarkinconstruction.com",
     "image": "https://i.imgur.com/LwTwcqC.jpeg",
-    "description": "Specializing in agricultural and industrial building projects in Togher, Dunleer, Co. Louth."
+    "description": "Specializing in agricultural and industrial building26 building projects in Togher, Dunleer, Co. Louth."
   }
   </script>
   <style>
@@ -138,8 +139,10 @@
     #contact{background:linear-gradient(to bottom, #f3f4f6, #d1d5db);}
     .map-container iframe{width:100%;height:300px;border:0;border-radius:0.5rem;}
     @media (min-width:768px) {
-      .contact-grid{grid-template-columns:1fr 1fr;}
+      .contact-grid{display:flex; flex-direction:row; gap:2rem;}
       .map-container iframe{height:400px;}
+      .map-container{flex:1;}
+      .contact-form{flex:1;}
     }
 
     /* Footer */
@@ -328,16 +331,18 @@
   <section id="contact" class="py-12" role="region" aria-label="Contact Us">
     <div class="container">
       <h2 class="text-3xl font-bold text-center text-primary mb-8">Contact Us</h2>
-      <div class="contact-grid grid gap-6 md:grid-cols-2">
+      <div class="contact-grid flex flex-col md:flex-row gap-6">
         <!-- Google Maps -->
-        <div class="map-container shadow-md">
+        <div class="map-container shadow-md flex-1">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2364.456789012345!2d-6.394567!3d53.834567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48673b7f8c9d7b2f%3A0x8f7b8c9d7b2f8c9d!2sTogher%2C%20Dunleer%2C%20Co.%20Louth%2C%20A92%20W8D2%2C%20Ireland!5e0!3m2!1sen!2sie!4v1697051234567!5m2!1sen!2sie&key=YOUR_API_KEY" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <!-- Contact Form -->
-        <form action="https://formspree.io/f/xrbkpyey" method="POST" class="flex flex-col gap-4 max-w-md mx-auto" id="contact-form">
+        <form action="https://formspree.io/f/xrbkpyey" method="POST" class="contact-form flex flex-col gap-4 flex-1">
           <input type="hidden" name="_subject" value="New Contact Form Submission">
           <p class="hidden">
-            <label>Don’t fill this out: <input name="_honeypot"></label>
+            <label class="text-left">
+              <input name="_honeypot" placeholder="Do not type here" class="form-input">
+            </label>
           </p>
           <label class="text-left">
             Your Name:
