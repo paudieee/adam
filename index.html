@@ -69,11 +69,11 @@
     .shadow-lg{box-shadow:0 10px 15px rgba(0,0,0,0.1);}
 
     /* Navigation */
-    nav{position:sticky;top:0;background-color:#fff;z-index:20;border-bottom:1px solid #e2e8f0;transition:box-shadow 0.3s ease;}
+    nav{position:sticky;top:0;background-color:rgba(255,255,255,0.95);z-index:20;border-bottom:1px solid #e2e8f0;transition:box-shadow 0.3s ease;padding:0.75rem 0;}
     nav.scrolled{box-shadow:0 2px 4px rgba(0,0,0,0.1);}
-    .nav-logo img{width:150px;height:auto;}
-    .nav-links{display:flex;gap:2rem;padding:0.5rem 0;}
-    .nav-links a{position:relative;color:#4b5563;font-size:1.1rem;font-weight:500;padding:0.5rem 0;text-decoration:none;}
+    .nav-logo img{width:120px;height:auto;}
+    .nav-links{display:flex;gap:1.5rem;padding:0.25rem 0;}
+    .nav-links a{position:relative;color:#4b5563;font-size:1rem;font-weight:500;padding:0.25rem 0;text-decoration:none;}
     .nav-links a:hover, .nav-links a:focus{color:#1e40af;}
     .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#1e40af;transition:width 0.3s ease;}
     .nav-links a:hover::after, .nav-links a:focus::after{width:100%;}
@@ -81,16 +81,21 @@
     .hamburger{font-size:1.5rem;background:none;border:none;cursor:pointer;color:#4b5563;display:none;padding:0.5rem;}
     .hamburger.active::before{content:'✕';font-size:1.5rem;}
     @media (max-width:767px) {
-      .hamburger{display:block;}
+      nav{position:sticky;padding:1.5rem 0;}
+      .nav-logo img{width:150px;}
       .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:#fff;flex-direction:column;justify-content:center;align-items:center;gap:2rem;transform:translateX(-100%);transition:transform 0.3s ease;}
       .nav-links.active{transform:translateX(0);display:flex;}
       .nav-links a{font-size:1.5rem;}
+      .hamburger{display:block;}
     }
 
     /* Hero Section */
     .hero{background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4)), url('https://i.imgur.com/LwTwcqC.jpeg') no-repeat center/cover;min-height:500px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:2rem;position:relative;background-attachment:fixed;}
     .hero h1{text-shadow:0 2px 4px rgba(0,0,0,0.5);animation:fadeInUp 1s ease-out;}
     .hero p{font-size:1.25rem;text-shadow:0 1px 2px rgba(0,0,0,0.3);animation:fadeInUp 1.2s ease-out;}
+    @media (min-width:768px) {
+      body{padding-top:60px;}
+    }
 
     /* Project Cards */
     .project-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
@@ -138,30 +143,39 @@
     /* Slideshow */
     .slideshow-container{position:relative;max-width:1000px;margin:0 auto;overflow:hidden;}
     .slides-wrapper{display:flex;width:100%;transition:transform 0.5s ease-in-out;}
-    .slide{flex:0 0 100%;display:none;}
-    .slide.active{display:block;}
-    .slide img{width:100%;height:auto;border-radius:0.5rem;}
-    .prev, .next{position:absolute;top:50%;transform:translateY(-50%);background:#1e40af;color:#fff;padding:0.5rem 1rem;border-radius:0.5rem;cursor:pointer;transition:background 0.3s ease;}
-    .prev{left:10px;}
-    .next{right:10px;}
-    .prev:hover, .next:hover{background:#1e3a8a;}
+    .slide{flex:0 0 100%;display:none;opacity:0;}
+    .slide.active{display:block;opacity:1;}
+    .slide-image-container{width:100%;height:400px;border-radius:0.5rem;overflow:hidden;background:#f8fafc;border:1px solid #e2e8f0;}
+    .slide img{width:100%;height:100%;object-fit:contain;object-position:center;border-radius:0.5rem;}
+    .prev, .next{position:absolute;top:50%;transform:translateY(-50%);background:#1e40af;color:#fff;padding:0.75rem 1.25rem;border-radius:0.5rem;cursor:pointer;transition:background 0.3s ease, transform 0.3s ease;}
+    .prev{left:15px;}
+    .next{right:15px;}
+    .prev:hover, .next:hover{background:#1e3a8a;transform:scale(1.1);}
     .dots{text-align:center;margin-top:1rem;}
-    .dot{display:inline-block;width:10px;height:10px;background:#e2e8f0;border-radius:50%;margin:0 5px;cursor:pointer;}
+    .dot{display:inline-block;width:12px;height:12px;background:#e2e8f0;border-radius:50%;margin:0 6px;cursor:pointer;transition:background 0.3s ease;}
     .dot.active{background:#1e40af;}
     @media (max-width:767px) {
       .slideshow-container{padding:0 1rem;}
+      .slide-image-container{height:300px;}
+      .prev, .next{padding:0.5rem 1rem;}
+      .slide img{object-fit:cover;}
     }
     /* Slide Animations */
     @keyframes slideLeft {
-      from {transform: translateX(100%);}
-      to {transform: translateX(0);}
+      0% {transform: translateX(100%); opacity: 0;}
+      100% {transform: translateX(0); opacity: 1;}
     }
     @keyframes slideRight {
-      from {transform: translateX(-100%);}
-      to {transform: translateX(0);}
+      0% {transform: translateX(-100%); opacity: 0;}
+      100% {transform: translateX(0); opacity: 1;}
+    }
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
     }
     .slide-left {animation: slideLeft 0.5s ease-in-out;}
     .slide-right {animation: slideRight 0.5s ease-in-out;}
+    .slide.active {animation: fadeIn 0.5s ease-in-out;}
 
     /* Animations */
     @keyframes fadeInUp {
@@ -255,21 +269,27 @@
       <div class="slideshow-container">
         <div class="slides-wrapper">
           <div class="slide">
-            <img src="https://i.imgur.com/eqy248C.jpeg" alt="Industrial Warehouse" loading="lazy">
+            <div class="slide-image-container shadow-md">
+              <img src="https://i.imgur.com/XBt3eHs.png" alt="Industrial Warehouse" loading="lazy">
+            </div>
             <div class="text-center mt-4">
               <h3 class="text-xl font-semibold text-primary">Industrial Warehouse</h3>
               <p class="text-secondary">Completed in 2024</p>
             </div>
           </div>
           <div class="slide">
-            <img src="https://i.imgur.com/CuRmnzo.jpeg" alt="Agricultural Shed" loading="lazy">
+            <div class="slide-image-container shadow-md">
+              <img src="https://i.imgur.com/wiTFJrE.png" alt="Agricultural Shed" loading="lazy">
+            </div>
             <div class="text-center mt-4">
               <h3 class="text-xl font-semibold text-primary">Agricultural Shed</h3>
               <p class="text-secondary">Completed in 2023</p>
             </div>
           </div>
           <div class="slide">
-            <img src="https://i.imgur.com/05uzlkv.jpeg" alt="Modern Shed" loading="lazy">
+            <div class="slide-image-container shadow-md">
+              <img src="https://i.imgur.com/k5skpqR.png" alt="Modern Shed" loading="lazy">
+            </div>
             <div class="text-center mt-4">
               <h3 class="text-xl font-semibold text-primary">Modern Shed</h3>
               <p class="text-secondary">Completed in 2025</p>
@@ -291,14 +311,23 @@
   <section id="contact" class="py-12" role="region" aria-label="Contact Us">
     <div class="container text-center">
       <h2 class="text-3xl font-bold text-center text-primary mb-8">Contact Us</h2>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="flex flex-col gap-4 mt-4 max-w-md mx-auto" id="contact-form">
-        <input type="hidden" name="form-name" value="contact">
+      <form action="https://formspree.io/f/xrbkpyey" method="POST" class="flex flex-col gap-4 mt-4 max-w-md mx-auto" id="contact-form">
+        <input type="hidden" name="_subject" value="New Contact Form Submission">
         <p class="hidden">
-          <label>Don’t fill this out: <input name="bot-field"></label>
+          <label>Don’t fill this out: <input name="_honeypot"></label>
         </p>
-        <input type="text" name="name" placeholder="Your Name" required class="form-input">
-        <input type="email" name="email" placeholder="Your Email" required class="form-input">
-        <textarea name="message" placeholder="Your Message" required class="form-textarea" rows="5"></textarea>
+        <label class="text-left">
+          Your Name:
+          <input type="text" name="name" placeholder="Your Name" required class="form-input">
+        </label>
+        <label class="text-left">
+          Your Email:
+          <input type="email" name="email" placeholder="Your Email" required class="form-input">
+        </label>
+        <label class="text-left">
+          Your Message:
+          <textarea name="message" placeholder="Your Message" required class="form-textarea" rows="5"></textarea>
+        </label>
         <button type="submit" class="btn">Send Message</button>
         <p class="form-message" id="form-message"></p>
       </form>
@@ -318,15 +347,15 @@
         <a href="https://www.facebook.com/profile.php?id=61563855041692" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on Facebook">
           <img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook Icon" class="social-icon">
         </a>
-        <a href="https://www.donedeal.ie" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on DoneDeal">
+        <a href="https://www.donedeal.ie/farmsheds-for-sale/sheds-industrial-and-agricultural-sheds/39744609" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on DoneDeal">
           <img src="https://img.icons8.com/ios-filled/24/ffffff/shopping-cart.png" alt="DoneDeal Icon" class="social-icon">
         </a>
-        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on TikTok">
+        <a href="https://www.tiktok.com/@adamlarkin4" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on TikTok">
           <img src="https://img.icons8.com/ios-filled/24/ffffff/tiktok.png" alt="TikTok Icon" class="social-icon">
         </a>
       </p>
       <hr class="footer-divider">
-      <p class="mt-4">Togher, Dunleer, Co. Louth | Adam Larkin Welding & Fabrication. All rights reserved.</p>
+      <p class="mt-4">Togher, Dunleer, Co. Louth | Adam Larkin Agricultural and Industrial building projects. All rights reserved.</p>
     </div>
   </footer>
 
@@ -417,22 +446,25 @@
         
         try {
           const formData = new FormData(form);
-          const response = await fetch('/', {
+          const response = await fetch(form.action, {
             method: 'POST',
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData).toString()
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
           });
 
+          const result = await response.json();
           if (response.ok) {
-            messageEl.textContent = 'Message sent successfully!';
-            messageEl.className = 'form-message success';
-            form.reset();
+            window.location.href = 'thank-you.html';
           } else {
-            messageEl.textContent = 'Error sending message. Please try again.';
+            console.error('Formspree Error:', result);
+            messageEl.textContent = result.errors ? result.errors[0].message : 'Submission failed. Please try again.';
             messageEl.className = 'form-message error';
           }
         } catch (error) {
-          messageEl.textContent = 'Error sending message. Please try again.';
+          console.error('Submission Error:', error);
+          messageEl.textContent = 'Error sending message. Please check your connection or try again later.';
           messageEl.className = 'form-message error';
         }
       });
