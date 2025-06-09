@@ -10,8 +10,8 @@
   <meta property="og:image" content="https://i.imgur.com/LwTwcqC.jpeg">
   <link rel="icon" href="https://i.imgur.com/7PyHgFT.png">
   <title>Adam Larkin Construction</title>
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   </noscript>
@@ -28,7 +28,7 @@
       "addressRegion": "Co. Louth",
       "addressCountry": "IE"
     },
-    "url": "https://adamlarkinconstructin.com",
+    "url": "https://adamlarkinconstruction.com",
     "image": "https://i.imgur.com/LwTwcqC.jpeg",
     "description": "Specializing in agricultural and industrial building projects in Togher, Dunleer, Co. Louth."
   }
@@ -36,13 +36,13 @@
   <style>
     *,::after,::before{box-sizing:border-box;}
     html{font-family:'Roboto', sans-serif;line-height:1.6;}
-    body{margin:0;padding:0;background-color:#f3f4f6;} /* Updated to Soft Neutral Gray */
+    body{margin:0;padding:0;background-color:#f3f4f6;}
     h1,h2,h3{margin:0;letter-spacing:0.02em;}
     p{margin:0 0 1rem;font-weight:300;}
     img{max-width:100%;height:auto;}
     .container{width:100%;max-width:1280px;margin:0 auto;padding:0 1.5rem;}
     .bg-primary{background-color:#1e40af;}
-    .bg-secondary{background-color:#e5e7eb;} /* Updated to darker gray */
+    .bg-secondary{background-color:#e5e7eb;}
     .text-primary{color:#1e40af;}
     .text-secondary{color:#4b5563;font-weight:300;}
     .text-white{color:#fff;}
@@ -69,18 +69,22 @@
     .shadow-lg{box-shadow:0 10px 15px rgba(0,0,0,0.1);}
 
     /* Navigation */
-    nav{position:sticky;top:0;background-color:#fff;z-index:10;border-bottom:1px solid #e2e8f0;transition:box-shadow 0.3s ease;}
+    nav{position:sticky;top:0;background-color:#fff;z-index:20;border-bottom:1px solid #e2e8f0;transition:box-shadow 0.3s ease;}
     nav.scrolled{box-shadow:0 2px 4px rgba(0,0,0,0.1);}
-    nav a{transition:color 0.3s ease, transform 0.3s ease;}
-    nav a:hover, nav a:focus{color:#1e40af;transform:translateY(-2px);}
-    nav a:focus{outline:2px solid #1e40af;outline-offset:2px;}
-    .hamburger{font-size:1.5rem;background:none;border:none;cursor:pointer;display:none;transition:transform 0.3s ease;}
-    .hamburger.active::before{content:'✕';transform:rotate(180deg);}
-    .nav-links{display:flex;gap:1.5rem;}
+    .nav-logo img{width:150px;height:auto;}
+    .nav-links{display:flex;gap:2rem;padding:0.5rem 0;}
+    .nav-links a{position:relative;color:#4b5563;font-size:1.1rem;font-weight:500;padding:0.5rem 0;text-decoration:none;}
+    .nav-links a:hover, .nav-links a:focus{color:#1e40af;}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#1e40af;transition:width 0.3s ease;}
+    .nav-links a:hover::after, .nav-links a:focus::after{width:100%;}
+    .nav-links a:focus{outline:2px solid #1e40af;outline-offset:2px;}
+    .hamburger{font-size:1.5rem;background:none;border:none;cursor:pointer;color:#4b5563;display:none;padding:0.5rem;}
+    .hamburger.active::before{content:'✕';font-size:1.5rem;}
     @media (max-width:767px) {
       .hamburger{display:block;}
-      .nav-links{position:absolute;top:60px;left:0;background:#fff;width:100%;flex-direction:column;padding:1rem;display:none;}
-      .nav-links.active{display:flex;}
+      .nav-links{position:fixed;top:0;left:0;width:100%;height:100vh;background:#fff;flex-direction:column;justify-content:center;align-items:center;gap:2rem;transform:translateX(-100%);transition:transform 0.3s ease;}
+      .nav-links.active{transform:translateX(0);display:flex;}
+      .nav-links a{font-size:1.5rem;}
     }
 
     /* Hero Section */
@@ -106,9 +110,12 @@
     .form-input, .form-textarea{padding:0.75rem;border:1px solid #e2e8f0;border-radius:0.5rem;width:100%;transition:border-color 0.3s ease, box-shadow 0.3s ease;}
     .form-input:focus, .form-textarea:focus{border-color:#1e40af;box-shadow:0 0 0 3px rgba(30, 64, 175, 0.2);outline:none;}
     .form-textarea{resize:vertical;min-height:100px;}
+    .form-message{display:none;color:#1e40af;font-size:0.875rem;margin-top:0.5rem;}
+    .form-message.success{display:block;color:#15803d;}
+    .form-message.error{display:block;color:#b91c1c;}
 
     /* Contact Section */
-    #contact{background:linear-gradient(to bottom, #f3f4f6, #d1d5db);} /* Updated gradient */
+    #contact{background:linear-gradient(to bottom, #f3f4f6, #d1d5db);}
 
     /* Footer */
     .footer{background:#1e40af;color:#fff;padding:2rem 0;}
@@ -128,6 +135,34 @@
     section{position:relative;}
     section::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(to right, #1e40af, #93c5fd);}
 
+    /* Slideshow */
+    .slideshow-container{position:relative;max-width:1000px;margin:0 auto;overflow:hidden;}
+    .slides-wrapper{display:flex;width:100%;transition:transform 0.5s ease-in-out;}
+    .slide{flex:0 0 100%;display:none;}
+    .slide.active{display:block;}
+    .slide img{width:100%;height:auto;border-radius:0.5rem;}
+    .prev, .next{position:absolute;top:50%;transform:translateY(-50%);background:#1e40af;color:#fff;padding:0.5rem 1rem;border-radius:0.5rem;cursor:pointer;transition:background 0.3s ease;}
+    .prev{left:10px;}
+    .next{right:10px;}
+    .prev:hover, .next:hover{background:#1e3a8a;}
+    .dots{text-align:center;margin-top:1rem;}
+    .dot{display:inline-block;width:10px;height:10px;background:#e2e8f0;border-radius:50%;margin:0 5px;cursor:pointer;}
+    .dot.active{background:#1e40af;}
+    @media (max-width:767px) {
+      .slideshow-container{padding:0 1rem;}
+    }
+    /* Slide Animations */
+    @keyframes slideLeft {
+      from {transform: translateX(100%);}
+      to {transform: translateX(0);}
+    }
+    @keyframes slideRight {
+      from {transform: translateX(-100%);}
+      to {transform: translateX(0);}
+    }
+    .slide-left {animation: slideLeft 0.5s ease-in-out;}
+    .slide-right {animation: slideRight 0.5s ease-in-out;}
+
     /* Animations */
     @keyframes fadeInUp {
       from {opacity:0;transform:translateY(20px);}
@@ -146,11 +181,15 @@
   <!-- Navigation -->
   <nav class="py-6" role="navigation" aria-label="Main navigation">
     <div class="container flex justify-between items-center">
+      <a href="#home" class="nav-logo" aria-label="Adam Larkin Construction Home">
+        <img src="https://i.imgur.com/7PyHgFT.png" alt="Adam Larkin Construction Logo">
+      </a>
       <button class="hamburger" aria-label="Toggle menu">☰</button>
       <div class="nav-links flex gap-6">
         <a href="#home" class="text-secondary font-semibold">Home</a>
         <a href="#about" class="text-secondary font-semibold">About</a>
         <a href="#projects" class="text-secondary font-semibold">Projects</a>
+        <a href="#portfolio" class="text-secondary font-semibold">Portfolio</a>
         <a href="#contact" class="text-secondary font-semibold">Contact</a>
       </div>
     </div>
@@ -209,16 +248,59 @@
     </div>
   </section>
 
+  <!-- Portfolio Section (Slideshow) -->
+  <section id="portfolio" class="py-12" role="region" aria-label="Portfolio">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center text-primary mb-8">Our Portfolio</h2>
+      <div class="slideshow-container">
+        <div class="slides-wrapper">
+          <div class="slide">
+            <img src="https://i.imgur.com/eqy248C.jpeg" alt="Industrial Warehouse" loading="lazy">
+            <div class="text-center mt-4">
+              <h3 class="text-xl font-semibold text-primary">Industrial Warehouse</h3>
+              <p class="text-secondary">Completed in 2024</p>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.imgur.com/CuRmnzo.jpeg" alt="Agricultural Shed" loading="lazy">
+            <div class="text-center mt-4">
+              <h3 class="text-xl font-semibold text-primary">Agricultural Shed</h3>
+              <p class="text-secondary">Completed in 2023</p>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.imgur.com/05uzlkv.jpeg" alt="Modern Shed" loading="lazy">
+            <div class="text-center mt-4">
+              <h3 class="text-xl font-semibold text-primary">Modern Shed</h3>
+              <p class="text-secondary">Completed in 2025</p>
+            </div>
+          </div>
+        </div>
+        <button class="prev" aria-label="Previous slide">❮</button>
+        <button class="next" aria-label="Next slide">❯</button>
+      </div>
+      <div class="dots">
+        <span class="dot" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact" class="py-12" role="region" aria-label="Contact Us">
     <div class="container text-center">
       <h2 class="text-3xl font-bold text-center text-primary mb-8">Contact Us</h2>
-      <form name="contact" method="POST" data-netlify="true" class="flex flex-col gap-4 mt-4 max-w-md mx-auto">
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="flex flex-col gap-4 mt-4 max-w-md mx-auto" id="contact-form">
         <input type="hidden" name="form-name" value="contact">
+        <p class="hidden">
+          <label>Don’t fill this out: <input name="bot-field"></label>
+        </p>
         <input type="text" name="name" placeholder="Your Name" required class="form-input">
         <input type="email" name="email" placeholder="Your Email" required class="form-input">
         <textarea name="message" placeholder="Your Message" required class="form-textarea" rows="5"></textarea>
         <button type="submit" class="btn">Send Message</button>
+        <p class="form-message" id="form-message"></p>
       </form>
       <p class="mt-4">
         Or reach us at: 
@@ -235,6 +317,12 @@
         Follow us on 
         <a href="https://www.facebook.com/profile.php?id=61563855041692" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on Facebook">
           <img src="https://img.icons8.com/ios-filled/24/ffffff/facebook-new.png" alt="Facebook Icon" class="social-icon">
+        </a>
+        <a href="https://www.donedeal.ie" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on DoneDeal">
+          <img src="https://img.icons8.com/ios-filled/24/ffffff/shopping-cart.png" alt="DoneDeal Icon" class="social-icon">
+        </a>
+        <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Follow Adam Larkin Construction on TikTok">
+          <img src="https://img.icons8.com/ios-filled/24/ffffff/tiktok.png" alt="TikTok Icon" class="social-icon">
         </a>
       </p>
       <hr class="footer-divider">
@@ -270,6 +358,9 @@
           document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
           });
+          // Close mobile menu if open
+          document.querySelector('.nav-links').classList.remove('active');
+          document.querySelector('.hamburger').classList.remove('active');
         });
       });
 
@@ -277,6 +368,73 @@
       window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
         nav.classList.toggle('scrolled', window.scrollY > 0);
+      });
+
+      // Slideshow functionality
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      let direction = '';
+
+      function showSlide(index, slideDirection) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove('active', 'slide-left', 'slide-right');
+          if (i === index) {
+            slide.classList.add('active', slideDirection);
+          }
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+
+      document.querySelector('.next').addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide, 'slide-left');
+      });
+
+      document.querySelector('.prev').addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide, 'slide-right');
+      });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const newIndex = parseInt(dot.getAttribute('data-slide'));
+          direction = newIndex > currentSlide ? 'slide-left' : 'slide-right';
+          currentSlide = newIndex;
+          showSlide(currentSlide, direction);
+        });
+      });
+
+      showSlide(currentSlide, 'slide-left');
+
+      // Contact form submission
+      document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const messageEl = document.getElementById('form-message');
+        
+        try {
+          const formData = new FormData(form);
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+          });
+
+          if (response.ok) {
+            messageEl.textContent = 'Message sent successfully!';
+            messageEl.className = 'form-message success';
+            form.reset();
+          } else {
+            messageEl.textContent = 'Error sending message. Please try again.';
+            messageEl.className = 'form-message error';
+          }
+        } catch (error) {
+          messageEl.textContent = 'Error sending message. Please try again.';
+          messageEl.className = 'form-message error';
+        }
       });
 
       // Fallback for IntersectionObserver
